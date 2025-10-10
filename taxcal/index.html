@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Tax Calculator</title>
+            <script>
+                function formatCurrency(amount) {
+                    return amount.toLocaleString({ style: 'currency', currency: 'USD' });
+                }
+
+
+                function calculateTax() {
+                    // Get input value
+                    var purchase = parseFloat(document.getElementById("purchase").value);
+
+                    // Define tax rate (8.25%)
+                    var taxRate = 0.0825;
+
+
+                    // Calculate tax and total cost
+                    var tax = purchase * taxRate;
+                    var total = purchase + tax;
+
+                    // Round to 2 decimal places
+                    tax = Math.round(tax * 100) / 100;
+                    total = Math.round(total * 100) / 100;
+
+                    // Display results with $ and commas
+                    document.getElementById("tax").value = formatCurrency(tax);
+                    document.getElementById("total").value = formatCurrency(total);
+                }
+
+            </script>
+        </head>
+        <body>
+            <h2>Tax Calculator</h2>
+            <form>
+                <label for="purchase">Purchase Amount:</label><br>
+                <input type="text" id="purchase" name="purchase"><br>
+
+
+                <label for="tax">Sales Tax (8.25%):</label><br>
+                <input type="text" id="tax" name="tax" disabled><br>
+
+
+                <label for="total">Total with Tax:</label><br>
+                <input type="text" id="total" name="total" disabled><br><br>
+
+
+                <input type="button" value="Calculate Total" onclick="calculateTax()">
+            </form>
+        </body>
+    </html>
